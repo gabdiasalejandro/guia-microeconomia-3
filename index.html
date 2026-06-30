@@ -3,132 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Microeconomía tercer parcial</title>
+<title>Microeconomía · Tercer parcial</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --green:#58CC02; --green-dark:#58A700; --green-soft:#EAF7DC; --green-ink:#3a7a00;
-    --blue:#1CB0F5; --blue-dark:#1899D6; --blue-soft:#DDF4FF;
-    --red:#E8554E; --red-dark:#d23a33; --red-soft:#FBE4E3;
-    --ink:#3C3C3C; --muted:#7a7a7a; --border:#E5E5E5;
-    --bg:#FFFFFF; --soft:#F7F7F7;
-  }
-  *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth}
-  body{font-family:'Nunito',sans-serif;color:var(--ink);background:var(--soft);line-height:1.55;-webkit-font-smoothing:antialiased}
-  .wrap{max-width:820px;margin:0 auto;padding:0 18px}
-
-  /* Top bar */
-  .topbar{position:sticky;top:0;z-index:40;background:var(--bg);border-bottom:2px solid var(--border)}
-  .topbar .wrap{display:flex;align-items:center;height:64px}
-  .brand{font-family:'Fredoka';font-weight:600;font-size:1.15rem;color:var(--green-ink);display:flex;align-items:center;gap:10px}
-  .brand .dot{width:30px;height:30px;border-radius:9px;background:var(--green);box-shadow:0 3px 0 var(--green-dark)}
-  .brand span{color:var(--ink);font-weight:500}
-
-  /* Tabs */
-  .tabs{display:flex;gap:10px;padding:16px 0 4px}
-  .tab{flex:1;font-family:'Fredoka';font-weight:600;font-size:.95rem;color:var(--muted);background:var(--bg);border:2px solid var(--border);border-bottom-width:4px;border-radius:14px;padding:12px;cursor:pointer;text-align:center;transition:.12s;letter-spacing:.3px}
-  .tab:hover{background:var(--soft)}
-  .tab.active{color:var(--green-ink);border-color:var(--green);background:var(--green-soft)}
-  .view{display:none;padding:8px 0 80px}
-  .view.active{display:block;animation:fade .25s ease}
-  @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
-
-  /* Hero */
-  .hero{background:var(--green);border-radius:20px;padding:26px 24px;color:#fff;margin:14px 0 22px;box-shadow:0 6px 0 var(--green-dark)}
-  .hero .eyebrow{font-family:'Fredoka';font-weight:500;font-size:.78rem;letter-spacing:2px;text-transform:uppercase;opacity:.9}
-  .hero h1{font-family:'Fredoka';font-weight:700;font-size:1.9rem;line-height:1.1;margin:6px 0 8px}
-  .hero p{font-weight:600;max-width:48ch;opacity:.96}
-  .hero .pills{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
-  .pill{background:rgba(255,255,255,.22);border-radius:999px;padding:6px 13px;font-family:'Fredoka';font-weight:500;font-size:.82rem}
-
-  /* Unidades (estilo unificado, sin colores por unidad) */
-  .unit{margin-bottom:18px}
-  .unit-head{display:flex;align-items:center;gap:14px;background:var(--bg);border:2px solid var(--border);border-bottom-width:4px;border-radius:14px;padding:13px 16px;font-family:'Fredoka'}
-  .unit-head .num{width:40px;height:40px;flex:none;border-radius:11px;background:var(--green-soft);color:var(--green-ink);display:grid;place-items:center;font-weight:600;font-size:1.15rem}
-  .unit-head .t small{display:block;font-weight:500;font-size:.7rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted)}
-  .unit-head .t b{font-weight:600;font-size:1.1rem;line-height:1.15;color:var(--ink)}
-
-  .lesson{background:var(--bg);border:2px solid var(--border);border-bottom-width:4px;border-radius:14px;padding:18px 20px;margin-top:12px}
-  .lesson h3{font-family:'Fredoka';font-weight:600;font-size:1.05rem;color:var(--ink);margin-bottom:8px}
-  .lesson p{font-size:.97rem;margin-bottom:10px}
-  .lesson p:last-child{margin-bottom:0}
-  .lesson b{color:var(--green-ink)}
-  .lesson i{color:var(--muted)}
-
-  .key{background:var(--green-soft);border-left:4px solid var(--green);border-radius:10px;padding:11px 14px;margin:12px 0;font-size:.93rem}
-  .key b{color:var(--green-ink)}
-
-  .defs{display:grid;gap:8px;margin:10px 0}
-  .def{display:flex;gap:12px;align-items:flex-start;background:var(--soft);border-radius:11px;padding:10px 12px}
-  .def .tag{font-family:'Fredoka';font-weight:600;font-size:.78rem;color:var(--ink);background:#ececec;border-radius:7px;padding:3px 9px;flex:none;white-space:nowrap}
-  .def.pos .tag{color:var(--green-ink);background:var(--green-soft)}
-  .def.neg .tag{color:var(--red-dark);background:var(--red-soft)}
-  .def span{font-size:.92rem}
-
-  /* Botones */
-  .btn{width:100%;font-family:'Fredoka';font-weight:600;font-size:1rem;letter-spacing:1px;text-transform:uppercase;color:#fff;background:var(--green);border:none;border-radius:15px;box-shadow:0 4px 0 var(--green-dark);padding:15px;cursor:pointer;margin-top:18px;transition:.06s}
-  .btn:active{transform:translateY(2px);box-shadow:0 2px 0 var(--green-dark)}
-  .btn:disabled{background:var(--border);color:#afafaf;box-shadow:0 4px 0 #d0d0d0;cursor:not-allowed}
-  .btn.ghost{background:var(--bg);color:var(--green-ink);border:2px solid var(--border);border-bottom-width:4px;box-shadow:none}
-  .btn.ghost:active{transform:translateY(2px)}
-
-  /* Quiz */
-  .quizcard{background:var(--bg);border:2px solid var(--border);border-bottom-width:4px;border-radius:18px;padding:22px;min-height:320px}
-  .qbar{display:flex;align-items:center;gap:12px;margin-bottom:16px}
-  .track{flex:1;height:14px;background:var(--border);border-radius:999px;overflow:hidden}
-  .fill{height:100%;width:0;background:var(--green);border-radius:999px;transition:width .35s ease}
-  .qcount{font-family:'Fredoka';font-weight:600;color:var(--muted);font-size:.85rem;margin-bottom:4px}
-  .qtype{font-family:'Fredoka';font-weight:500;font-size:.7rem;letter-spacing:2px;text-transform:uppercase;color:var(--green-ink);margin-bottom:6px}
-  .qtext{font-family:'Fredoka';font-weight:500;font-size:1.16rem;line-height:1.3;margin-bottom:18px;color:var(--ink)}
-  .opts{display:grid;gap:10px}
-  .opt{text-align:left;font-family:'Nunito';font-weight:700;font-size:.97rem;color:var(--ink);background:var(--bg);border:2px solid var(--border);border-bottom-width:4px;border-radius:13px;padding:13px 15px;cursor:pointer;transition:.1s;display:flex;gap:11px;align-items:center}
-  .opt .ltr{width:26px;height:26px;flex:none;border-radius:7px;border:2px solid var(--border);display:grid;place-items:center;font-family:'Fredoka';font-weight:600;font-size:.82rem;color:var(--muted)}
-  .opt:hover:not(.locked){background:var(--soft)}
-  .opt.sel{border-color:var(--blue);background:var(--blue-soft)}
-  .opt.sel .ltr{border-color:var(--blue);color:var(--blue-dark);background:#fff}
-  .opt.good{border-color:var(--green);background:var(--green-soft)}
-  .opt.good .ltr{border-color:var(--green);background:var(--green);color:#fff}
-  .opt.bad{border-color:var(--red);background:var(--red-soft)}
-  .opt.bad .ltr{border-color:var(--red);background:var(--red);color:#fff}
-  .opt.locked{cursor:default}
-
-  /* Drawer */
-  .drawer{position:fixed;left:0;right:0;bottom:-110%;z-index:50;border-top:2px solid var(--border);transition:bottom .3s cubic-bezier(.2,.8,.2,1)}
-  .drawer.show{bottom:0}
-  .drawer.ok{background:var(--green-soft)} .drawer.no{background:var(--red-soft)}
-  .drawer .wrap{padding:18px 18px 22px;display:flex;flex-direction:column;gap:10px}
-  .drawer .head{font-family:'Fredoka';font-weight:600;font-size:1.18rem}
-  .drawer.ok .head{color:var(--green-ink)} .drawer.no .head{color:var(--red-dark)}
-  .drawer .just{font-weight:700;font-size:.93rem;color:var(--ink)}
-  .drawer .cont{font-family:'Fredoka';font-weight:600;letter-spacing:1px;text-transform:uppercase;color:#fff;border:none;border-radius:15px;padding:14px;cursor:pointer;font-size:.95rem}
-  .drawer.ok .cont{background:var(--green);box-shadow:0 4px 0 var(--green-dark)}
-  .drawer.no .cont{background:var(--red);box-shadow:0 4px 0 var(--red-dark)}
-  .drawer .cont:active{transform:translateY(2px)}
-
-  /* Resultados */
-  .result{text-align:center;padding:24px 16px}
-  .result h2{font-family:'Fredoka';font-weight:700;font-size:1.5rem;margin:6px 0 4px;color:var(--green-ink)}
-  .result p{font-weight:700;color:var(--muted)}
-  .scoreboard{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin:22px 0}
-  .sb{background:var(--bg);border:2px solid var(--border);border-bottom-width:4px;border-radius:14px;padding:14px 20px;min-width:96px}
-  .sb .v{font-family:'Fredoka';font-weight:700;font-size:1.5rem;color:var(--green-ink)}
-  .sb .l{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--muted)}
-
-  footer{text-align:center;color:var(--muted);font-size:.82rem;font-weight:700;padding:26px 0 50px}
-
-  @media (max-width:560px){.hero h1{font-size:1.55rem}.qtext{font-size:1.04rem}}
-  :focus-visible{outline:3px solid var(--blue);outline-offset:2px;border-radius:6px}
-  @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
-</style>
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
 <div class="topbar">
   <div class="wrap">
-    <div class="brand"><span class="dot"></span>Microeconomía <span>· Tercer parcial</span></div>
+    <div class="brand"><span class="dot"></span>Microeconomía <small>· Tercer parcial</small></div>
   </div>
 </div>
 
@@ -143,112 +29,159 @@
 <div class="wrap">
 <section class="view active" id="guide">
 
-  <div class="hero">
-    <div class="eyebrow">Tercer parcial</div>
+  <header class="hero">
+    <div class="eyebrow">Guía de estudio integral</div>
     <h1>Microeconomía en un entorno global</h1>
-    <p>Cómo la asignación de recursos escasos moldea el bienestar social, las políticas públicas y las relaciones de poder.</p>
+    <p>Síntesis de los pilares microeconómicos que rigen la política pública contemporánea: cómo la asignación de recursos escasos moldea el bienestar social, las políticas públicas y las relaciones de poder.</p>
     <div class="pills">
       <span class="pill">5 unidades</span>
       <span class="pill">20 reactivos</span>
       <span class="pill">repaso completo</span>
     </div>
-  </div>
+  </header>
 
-  <div class="unit">
-    <div class="unit-head"><div class="num">1</div><div class="t"><small>Unidad 1</small><b>Fundamentos y política pública</b></div></div>
-    <div class="lesson">
-      <h3>El imperativo de la elección</h3>
-      <p>La <b>escasez</b> no es una simple carencia: es la condición que obliga a elegir, porque los recursos no alcanzan para costear todo a la vez (p. ej. una patente <i>o</i> capacitar al personal) frente a necesidades ilimitadas.</p>
-      <p>La <b>eficiencia</b> es la capacidad de extraer el máximo beneficio de esos recursos escasos. Hay un <b>fallo de mercado</b> cuando el mercado no los asigna de forma eficiente ni equitativa.</p>
-    </div>
-    <div class="lesson">
-      <h3>Política frente a políticas públicas</h3>
-      <div class="defs">
-        <div class="def"><span class="tag">Política</span><span>El <b>poder</b> en general y las dinámicas de autoridad del sistema.</span></div>
-        <div class="def pos"><span class="tag">Políticas públicas</span><span>El manejo <b>específico</b> de los asuntos públicos. Son ellas las que, al final, determinan la política y las relaciones de poder.</span></div>
-      </div>
-    </div>
-    <div class="lesson">
-      <h3>El papel del Estado</h3>
-      <p>Desde la postura <b>neoclásica</b>, la intervención se justifica por <b>eficiencia</b>: cuando el precio no refleja el costo o beneficio social real (fallo de mercado), la política pública interviene para subir el bienestar y maximizar la utilidad mínima de la sociedad.</p>
-      <div class="key">La <b>teoría de la elección pública</b> matiza esto: las burocracias están hechas de <b>maximizadores individuales de utilidad</b>, así que un funcionario puede anteponer su beneficio al bien colectivo.</div>
-    </div>
-  </div>
+  <nav class="toc">
+    <h2>Contenido</h2>
+    <ol>
+      <li><a href="#u1">Fundamentos de la microeconomía y la política pública</a></li>
+      <li><a href="#u2">Las externalidades y la intervención estructural</a></li>
+      <li><a href="#u3">Economía del bienestar e indicadores</a></li>
+      <li><a href="#u4">Análisis de caso: economía social (Argentina 2003–2013)</a></li>
+      <li><a href="#u5">Herramientas de comunicación y creatividad</a></li>
+    </ol>
+  </nav>
 
-  <div class="unit">
-    <div class="unit-head"><div class="num">2</div><div class="t"><small>Unidad 2</small><b>Externalidades</b></div></div>
-    <div class="lesson">
-      <h3>¿Qué es una externalidad?</h3>
-      <p>Un fallo de mercado donde un <b>costo o beneficio</b> de una actividad económica afecta a <b>terceros</b> que no participaron en la transacción.</p>
-      <div class="defs">
-        <div class="def pos"><span class="tag">+ Producción</span><span>El proceso productivo da un beneficio social colateral. Ej.: <b>siembra de árboles</b> y restauración de ecosistemas.</span></div>
-        <div class="def neg"><span class="tag">– Producción</span><span>La producción traslada costos a la sociedad. Ej.: <b>contaminación fabril</b>, emisiones de carbono, vertidos químicos.</span></div>
-        <div class="def pos"><span class="tag">+ Consumo</span><span>El consumo eleva el bienestar general. Ej.: <b>educación universitaria</b>, avances médicos.</span></div>
-        <div class="def neg"><span class="tag">– Consumo</span><span>El consumo perjudica a otros. Ej.: <b>concierto al aire libre</b> (contaminación auditiva).</span></div>
-      </div>
+  <!-- UNIDAD 1 -->
+  <section class="unit" id="u1">
+    <div class="unit-head">
+      <div class="num">1</div>
+      <div class="t"><small>Unidad 1</small><b>Fundamentos y política pública</b></div>
     </div>
-    <div class="lesson">
-      <h3>Cómo se corrigen</h3>
-      <p><b>Impuesto pigouviano:</b> un gravamen-incentivo para que la empresa reduzca o elimine su externalidad negativa (que <i>internalice</i> el costo social).</p>
-      <p><b>Permisos de emisión negociables:</b> ponen un <b>límite numérico</b> estricto a la contaminación mediante permisos que se compran y venden en un mercado secundario.</p>
-    </div>
-  </div>
 
-  <div class="unit">
-    <div class="unit-head"><div class="num">3</div><div class="t"><small>Unidad 3</small><b>Economía del bienestar</b></div></div>
-    <div class="lesson">
-      <h3>Dos formas de medir el bienestar</h3>
-      <div class="defs">
-        <div class="def"><span class="tag">Subjetivo</span><span>Lo que la gente <b>dice tener</b> (encuestas de felicidad). Percepción individual.</span></div>
-        <div class="def pos"><span class="tag">Objetivo</span><span>Factores reales de un proyecto de vida: <b>nutrición, vivienda digna, salud</b>.</span></div>
-      </div>
-      <p><b>Indicadores:</b> bienes y servicios producidos; <b>PIB per cápita</b> (correlaciona con mayor esperanza de vida); y la <b>distribución de la renta</b> —una alta concentración puede degradar el bienestar aunque haya crecimiento.</p>
-    </div>
-    <div class="lesson">
-      <h3>Eficiencia de Pareto</h3>
-      <p>Un <b>Pareto óptimo</b> es un equilibrio donde ya <b>no se puede mejorar a nadie sin perjudicar a otro</b>. Se ve en la Curva de Posibilidades de Utilidad: no hay "almuerzos gratis".</p>
-      <div class="key">Toda ganancia para uno exige un <b>sacrificio equivalente</b> para otra parte del sistema.</div>
-    </div>
-    <div class="lesson">
-      <h3>Igualdad y legitimidad</h3>
-      <div class="defs">
-        <div class="def"><span class="tag">Norma democrática</span><span>Criterio para validar la igualdad económica y la legitimidad del sistema.</span></div>
-        <div class="def pos"><span class="tag">Maximin</span><span>Justicia social que prioriza mejorar a las familias de <b>menores ingresos</b>.</span></div>
-        <div class="def"><span class="tag">Curvas indiferencia</span><span>Combinaciones de utilidad con el <b>mismo grado</b> de satisfacción social.</span></div>
-      </div>
-    </div>
-  </div>
+    <article class="lesson">
+      <h3><span class="sec">1.1</span> El imperativo de la elección</h3>
+      <p>La <b>escasez</b> no es una simple carencia: es la condición fundamental que obliga a los agentes a elegir, porque los recursos no alcanzan para costear todo a la vez —por ejemplo, una patente tecnológica <i>o</i> capacitar al personal— frente a necesidades ilimitadas.</p>
+      <p>La <b>eficiencia</b> es la capacidad técnica de la sociedad para extraer el máximo beneficio posible de esos recursos escasos. Existe un <b>fallo de mercado</b> precisamente cuando el mercado es incapaz de asignar los recursos de forma eficiente y equitativa.</p>
+    </article>
 
-  <div class="unit">
-    <div class="unit-head"><div class="num">4</div><div class="t"><small>Unidad 4</small><b>Caso: Argentina 2003–2013</b></div></div>
-    <div class="lesson">
-      <h3>Economía social y solidaria</h3>
-      <p>Argentina usó las políticas públicas como instrumentos de <b>economía social</b> para mitigar la exclusión y el desempleo. Su papel a nivel internacional: generar <b>empleo e inclusión social</b>.</p>
-      <p><b>El gran obstáculo:</b> la <b>visión instrumental</b> del Estado, que veía a las organizaciones sociales solo como herramientas de asistencia y no incidía en las condiciones socioeconómicas de fondo.</p>
-      <div class="key"><b>Lección:</b> bien orientada, la economía social es un motor de estabilidad y cohesión sociopolítica.</div>
-    </div>
-  </div>
-
-  <div class="unit">
-    <div class="unit-head"><div class="num">5</div><div class="t"><small>Unidad 5</small><b>Comunicar y crear</b></div></div>
-    <div class="lesson">
-      <h3>Elevator pitch</h3>
-      <p>Brevedad es poder. Identifica el <b>problema</b> y da una <b>solución concisa</b>. Ej.: una app que conecta agricultores locales para mitigar externalidades negativas de la producción masiva.</p>
-    </div>
-    <div class="lesson">
-      <h3>Storytelling económico</h3>
-      <p>Conecta emocionalmente para construir conocimiento. Sus piezas: el <b>personaje</b> (vehículo del mensaje), una <b>narrativa dramática</b> que capte atención, y un <b>cierre que emocione</b>.</p>
-      <div class="key">Paso técnico final antes de publicar: <b>leer el guion en voz alta</b> y pedir retroalimentación al público meta.</div>
-    </div>
-    <div class="lesson">
-      <h3>Lluvia de ideas</h3>
+    <article class="lesson">
+      <h3><span class="sec">1.2</span> Política frente a políticas públicas</h3>
       <div class="defs">
-        <div class="def"><span class="tag">Fluidez</span><span>Dejar fluir los pensamientos sin autocensura previa.</span></div>
-        <div class="def pos"><span class="tag">Disrupción</span><span>Fomentar ideas disruptivas y <b>construir sobre ellas</b>.</span></div>
-        <div class="def"><span class="tag">Combinación</span><span>Las mejores soluciones nacen al <b>amalgamar</b> las ideas más potentes.</span></div>
+        <div class="def"><span class="tag">Política</span><span class="body">El <b>poder</b> en general y las dinámicas de autoridad sistémica.</span></div>
+        <div class="def pos"><span class="tag">Políticas públicas</span><span class="body">El manejo <b>específico</b> de los asuntos públicos. Son ellas las que, en última instancia, determinan la política y las relaciones de poder.</span></div>
       </div>
+    </article>
+
+    <article class="lesson">
+      <h3><span class="sec">1.3</span> El papel del Estado: justificación neoclásica</h3>
+      <p>Desde la postura <b>neoclásica</b>, la intervención gubernamental no es arbitraria: se justifica por <b>eficiencia</b>. Cuando el precio no refleja el costo o beneficio social real (fallo de mercado), el diseño de políticas públicas interviene para incrementar el bienestar y maximizar la utilidad mínima de la sociedad.</p>
+      <div class="key">La <b>teoría de la elección pública</b> matiza lo anterior: las burocracias están integradas por <b>maximizadores individuales de utilidad</b>, de modo que un funcionario puede anteponer su beneficio personal al bien colectivo.</div>
+    </article>
+  </section>
+
+  <!-- UNIDAD 2 -->
+  <section class="unit" id="u2">
+    <div class="unit-head">
+      <div class="num">2</div>
+      <div class="t"><small>Unidad 2</small><b>Externalidades</b></div>
     </div>
-  </div>
+
+    <article class="lesson">
+      <h3><span class="sec">2.1</span> Definición técnica</h3>
+      <p>Una <b>externalidad</b> es un fallo de mercado en el que un <b>costo o beneficio</b> derivado de una actividad económica afecta de manera directa a <b>terceros</b> que no participaron en la transacción original.</p>
+    </article>
+
+    <article class="lesson">
+      <h3><span class="sec">2.2</span> Matriz de externalidades</h3>
+      <div class="defs">
+        <div class="def pos"><span class="tag">+ Producción</span><span class="body">El proceso productivo genera un beneficio social colateral. Ej.: <b>siembra de árboles</b> y restauración de ecosistemas.</span></div>
+        <div class="def neg"><span class="tag">– Producción</span><span class="body">La producción traslada costos a la sociedad. Ej.: <b>contaminación fabril</b>, emisiones de carbono, vertidos químicos en ríos.</span></div>
+        <div class="def pos"><span class="tag">+ Consumo</span><span class="body">El consumo individual eleva el bienestar general. Ej.: <b>educación universitaria</b>, avances médicos, nueva tecnología.</span></div>
+        <div class="def neg"><span class="tag">– Consumo</span><span class="body">El consumo individual perjudica a otros. Ej.: <b>concierto al aire libre</b> (contaminación auditiva excesiva).</span></div>
+      </div>
+    </article>
+
+    <article class="lesson">
+      <h3><span class="sec">2.3</span> Instrumentos de corrección</h3>
+      <p><b>Impuesto pigouviano:</b> un gravamen diseñado como incentivo económico para que la empresa reduzca o elimine su externalidad negativa, es decir, que <i>internalice</i> el costo social.</p>
+      <p><b>Permisos de emisión negociables:</b> establecen un <b>límite numérico</b> estricto a la contaminación mediante permisos transables en un mercado secundario.</p>
+    </article>
+  </section>
+
+  <!-- UNIDAD 3 -->
+  <section class="unit" id="u3">
+    <div class="unit-head">
+      <div class="num">3</div>
+      <div class="t"><small>Unidad 3</small><b>Economía del bienestar</b></div>
+    </div>
+
+    <article class="lesson">
+      <h3><span class="sec">3.1</span> Dimensiones e indicadores del bienestar</h3>
+      <div class="defs">
+        <div class="def"><span class="tag">Subjetivo</span><span class="body">Lo que la gente <b>dice tener</b> (encuestas de felicidad). Se cuantifica por percepción individual.</span></div>
+        <div class="def pos"><span class="tag">Objetivo</span><span class="body">Factores reales de un proyecto de vida factible: <b>nutrición, vivienda digna y salud</b>.</span></div>
+      </div>
+      <p><b>Indicadores económicos:</b> cantidad de bienes y servicios producidos; <b>PIB per cápita</b> (correlacionado directamente con la esperanza de vida); y la <b>distribución de la renta</b> —una alta concentración de riqueza puede degradar el bienestar social aunque exista crecimiento.</p>
+    </article>
+
+    <article class="lesson">
+      <h3><span class="sec">3.2</span> Eficiencia de Pareto</h3>
+      <p>Un <b>Pareto óptimo</b> describe un equilibrio donde ya <b>no es posible mejorar a un individuo sin perjudicar necesariamente a otro</b>. Se observa en la <i>Curva de Posibilidades de Utilidad</i>, que representa la utilidad máxima alcanzable dada la asignación de recursos.</p>
+      <div class="key">No hay "almuerzos gratis": toda ganancia para uno exige un <b>sacrificio equivalente</b> en otra parte del sistema.</div>
+    </article>
+
+    <article class="lesson">
+      <h3><span class="sec">3.3</span> Criterios de igualdad y legitimidad</h3>
+      <div class="defs">
+        <div class="def"><span class="tag">Norma democrática</span><span class="body">Criterio técnico para validar la igualdad económica y la legitimidad del sistema.</span></div>
+        <div class="def pos"><span class="tag">Maximin</span><span class="body">Enfoque de justicia social que prioriza mejorar a las familias de <b>menores ingresos</b>.</span></div>
+        <div class="def"><span class="tag">Curvas de indiferencia</span><span class="body">Combinaciones de utilidad con el <b>mismo grado</b> de satisfacción para la sociedad.</span></div>
+      </div>
+    </article>
+  </section>
+
+  <!-- UNIDAD 4 -->
+  <section class="unit" id="u4">
+    <div class="unit-head">
+      <div class="num">4</div>
+      <div class="t"><small>Unidad 4</small><b>Caso: Argentina 2003–2013</b></div>
+    </div>
+
+    <article class="lesson">
+      <h3><span class="sec">4.1</span> Economía social y solidaria</h3>
+      <p>En este periodo, Argentina utilizó las políticas públicas como instrumentos de <b>economía social</b> para mitigar la exclusión social y el desempleo. Su papel fundamental a nivel internacional es contribuir a la generación de <b>empleo e inclusión social</b>.</p>
+      <p><b>El principal obstáculo</b> fue la <b>visión instrumental</b> del Estado sobre las organizaciones sociales: al verlas meramente como herramientas de asistencia, no se incidía estructuralmente en las condiciones socioeconómicas, lo que limitaba la transformación real.</p>
+      <div class="key"><b>Lección aprendida:</b> bien orientada, la economía social es un motor de estabilidad y cohesión sociopolítica.</div>
+    </article>
+  </section>
+
+  <!-- UNIDAD 5 -->
+  <section class="unit" id="u5">
+    <div class="unit-head">
+      <div class="num">5</div>
+      <div class="t"><small>Unidad 5</small><b>Comunicar y crear</b></div>
+    </div>
+
+    <article class="lesson">
+      <h3><span class="sec">5.1</span> Elevator pitch</h3>
+      <p>En la consultoría, la brevedad es poder. Un pitch efectivo identifica el <b>problema</b> y ofrece una <b>solución concisa</b>. Ej.: una app que conecta agricultores locales para mitigar las externalidades negativas de la producción masiva.</p>
+    </article>
+
+    <article class="lesson">
+      <h3><span class="sec">5.2</span> Storytelling económico</h3>
+      <p>Su propósito es construir conocimiento mediante la <b>conexión emocional</b>. Sus piezas críticas son el <b>personaje</b> (vehículo del mensaje), una <b>narrativa dramática</b> que capte la atención y un <b>cierre que emocione</b>.</p>
+      <div class="key">Paso técnico final antes de publicar: <b>leer el guion en voz alta</b> y solicitar retroalimentación del público meta para asegurar credibilidad.</div>
+    </article>
+
+    <article class="lesson">
+      <h3><span class="sec">5.3</span> Proceso creativo (lluvia de ideas)</h3>
+      <div class="defs">
+        <div class="def"><span class="tag">Fluidez</span><span class="body">Dejar fluir los pensamientos sin autocensura previa.</span></div>
+        <div class="def pos"><span class="tag">Disrupción</span><span class="body">Fomentar ideas disruptivas y <b>construir sobre ellas</b> en lugar de rechazarlas.</span></div>
+        <div class="def"><span class="tag">Combinación</span><span class="body">Las mejores soluciones nacen al seleccionar y <b>amalgamar</b> las ideas más potentes.</span></div>
+      </div>
+    </article>
+  </section>
 
   <button class="btn" onclick="goExam()">Ir al examen de práctica</button>
 </section>
@@ -269,147 +202,6 @@
   </div>
 </div>
 
-<script>
-const QUESTIONS=[
- {type:"Externalidades",q:"Una empresa química vierte residuos en un río y afecta a los pescadores locales. ¿Cómo se clasifica?",
-  o:["Externalidad positiva de consumo","Externalidad negativa de producción","Política pública de equidad distributiva"],a:1,
-  j:"La actividad productiva (la fábrica) impone un costo involuntario a un tercero (los pescadores): externalidad negativa de origen productivo."},
- {type:"Bienestar",q:"Alcanzar un punto de Pareto óptimo implica que…",
-  o:["Todos los ciudadanos tienen exactamente el mismo ingreso","Se puede mejorar a un sector vulnerable sin afectar a nadie","La mejora de un individuo implica necesariamente la pérdida de otro"],a:2,
-  j:"En el óptimo de Pareto no hay 'almuerzos gratis': toda ganancia individual exige un sacrificio equivalente en otra parte del sistema."},
- {type:"Instrumentos",q:"El gobierno aplica un impuesto a las emisiones de carbono de una siderúrgica para desincentivar su impacto. Está usando…",
-  o:["Un permiso de emisión negociable","Un impuesto pigouviano","Un criterio Maximin"],a:1,
-  j:"El impuesto pigouviano corrige la señal de precios para que el productor internalice el costo social de su contaminación."},
- {type:"Bienestar",q:"El 85% de los ciudadanos dice sentirse feliz tras la creación de nuevos parques. ¿Qué dimensión del bienestar es?",
-  o:["Bienestar objetivo","Bienestar subjetivo","Norma democrática"],a:1,
-  j:"Se basa en la percepción declarada ('lo que dicen tener'), no en indicadores materiales como salud o nutrición."},
- {type:"Creatividad",q:"En una lluvia de ideas sobre movilidad, alguien propone la teletransportación. ¿Qué procede?",
-  o:["Rechazarla de inmediato por no tener base científica","Fomentar la idea disruptiva y construir sobre ella","Centrarse solo en la eficiencia de Pareto"],a:1,
-  j:"En la fase de fluidez, las ideas disruptivas son catalizadores de soluciones factibles; se evita la autocensura."},
- {type:"Fundamentos",q:"¿Cuál es la condición fundamental que obliga a los agentes económicos a tomar decisiones?",
-  o:["La eficiencia","La escasez","La norma democrática"],a:1,
-  j:"La escasez surge cuando los recursos no alcanzan para todo a la vez, forzando a priorizar ante necesidades ilimitadas."},
- {type:"Política pública",q:"¿Qué se refiere al manejo específico de los asuntos públicos?",
-  o:["La política","Las políticas públicas","El criterio Maximin"],a:1,
-  j:"La política es el poder en general; las políticas públicas son el manejo específico de lo público y determinan la política."},
- {type:"Instrumentos",q:"¿Qué instrumento pone un límite numérico estricto a la contaminación mediante permisos transables?",
-  o:["El impuesto pigouviano","Los permisos de emisión negociables","Las curvas de indiferencia social"],a:1,
-  j:"Los permisos de emisión negociables fijan un tope numérico y se compran/venden en un mercado secundario."},
- {type:"Caso Argentina",q:"En el caso argentino 2003–2013, ¿cuál fue el principal obstáculo de la economía social?",
-  o:["La falta de financiamiento internacional","La visión instrumental del Estado sobre las organizaciones sociales","El exceso de impuestos pigouvianos"],a:1,
-  j:"Al verlas solo como herramientas de asistencia, el Estado no incidía en las condiciones socioeconómicas de fondo, limitando la transformación real."},
- {type:"Bienestar",q:"¿Qué criterio de justicia social prioriza mejorar a las familias de menores ingresos?",
-  o:["La norma democrática","El criterio Maximin","La curva de posibilidades de utilidad"],a:1,
-  j:"El criterio Maximin enfoca la justicia social en elevar el bienestar de quienes tienen menores ingresos."},
- {type:"Fundamentos",q:"¿Cómo se define la eficiencia en economía?",
-  o:["La capacidad de extraer el máximo beneficio de los recursos escasos","La igualdad total de ingresos entre individuos","El poder del Estado para fijar precios"],a:0,
-  j:"La eficiencia es la capacidad técnica de la sociedad para obtener el máximo beneficio posible de sus recursos escasos."},
- {type:"Externalidades",q:"La siembra de árboles y la restauración de ecosistemas por un proceso productivo es un ejemplo de…",
-  o:["Externalidad positiva de producción","Externalidad negativa de consumo","Impuesto pigouviano"],a:0,
-  j:"El proceso productivo genera un beneficio social colateral: externalidad positiva de producción."},
- {type:"Externalidades",q:"La educación universitaria, que genera ciudadanos más informados que benefician a la sociedad, es…",
-  o:["Externalidad negativa de producción","Externalidad positiva de consumo","Norma democrática"],a:1,
-  j:"El consumo individual (estudiar) eleva el bienestar general: externalidad positiva de consumo."},
- {type:"Externalidades",q:"Un concierto al aire libre que genera contaminación auditiva excesiva es un ejemplo de…",
-  o:["Externalidad positiva de producción","Externalidad negativa de consumo","Permiso de emisión negociable"],a:1,
-  j:"El consumo (el concierto) genera un perjuicio externo a terceros: externalidad negativa de consumo."},
- {type:"El Estado",q:"Desde la postura neoclásica, ¿por qué motivo se justifica fundamentalmente la intervención del Estado?",
-  o:["Por motivos de eficiencia ante la incorrecta distribución de recursos","Por aumentar el poder político del gobierno","Por eliminar toda forma de mercado"],a:0,
-  j:"La intervención neoclásica se justifica por eficiencia: corregir el fallo de mercado cuando el precio no refleja el costo o beneficio social real."},
- {type:"Bienestar",q:"El PIB per cápita está directamente correlacionado con…",
-  o:["La contaminación auditiva","El aumento en la esperanza de vida","La autocensura creativa"],a:1,
-  j:"El PIB per cápita es un indicador de bienestar que se correlaciona directamente con el aumento de la esperanza de vida."},
- {type:"Bienestar",q:"La nutrición adecuada, la vivienda digna y la salud sustentan qué tipo de bienestar?",
-  o:["Bienestar subjetivo","Bienestar objetivo","Bienestar declarado"],a:1,
-  j:"El bienestar objetivo se sustenta en factores reales para un proyecto de vida factible: nutrición, vivienda y salud."},
- {type:"Comunicación",q:"¿Cuál es el paso técnico final del storytelling antes de publicar?",
-  o:["Leer el guion en voz alta y pedir retroalimentación al público meta","Calcular el PIB per cápita del proyecto","Aplicar un impuesto pigouviano al guion"],a:0,
-  j:"El cierre requiere leer el guion en voz alta y solicitar retroalimentación del público meta para asegurar credibilidad."},
- {type:"Comunicación",q:"En el storytelling económico, ¿qué función cumple el personaje?",
-  o:["Es el vehículo del mensaje","Es el límite numérico de contaminación","Es el criterio de justicia social"],a:0,
-  j:"El personaje actúa como vehículo del mensaje, por ejemplo un comerciante endeudado que genera empatía."},
- {type:"Creatividad",q:"Según el proceso creativo, ¿cuándo nacen las mejores soluciones?",
-  o:["Al rechazar las ideas disruptivas","Al seleccionar y amalgamar las ideas más potentes","Al autocensurar los pensamientos al inicio"],a:1,
-  j:"La combinación es el momento en que nacen las mejores soluciones: seleccionar y amalgamar las ideas más potentes."}
-];
-
-let idx=0,xp=0,correct=0,selected=null,locked=false;
-const area=document.getElementById('quizArea');
-const drawer=document.getElementById('drawer');
-
-document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>switchView(t.dataset.view)));
-function switchView(v){
-  document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active',t.dataset.view===v));
-  document.querySelectorAll('.view').forEach(s=>s.classList.toggle('active',s.id===v));
-  window.scrollTo({top:0,behavior:'smooth'});
-}
-function goExam(){switchView('exam');if(idx===0&&xp===0)renderQ();}
-
-function renderQ(){
-  if(idx>=QUESTIONS.length)return renderResult();
-  const Q=QUESTIONS[idx];selected=null;locked=false;
-  const pct=Math.round((idx/QUESTIONS.length)*100);
-  const L=['A','B','C','D'];
-  area.innerHTML=`
-    <div class="qbar"><div class="track"><div class="fill" style="width:${pct}%"></div></div></div>
-    <div class="qcount">Pregunta ${idx+1} de ${QUESTIONS.length}</div>
-    <div class="qtype">${Q.type}</div>
-    <div class="qtext">${Q.q}</div>
-    <div class="opts" id="opts">
-      ${Q.o.map((opt,i)=>`<button class="opt" data-i="${i}"><span class="ltr">${L[i]}</span><span>${opt}</span></button>`).join('')}
-    </div>
-    <button class="btn" id="checkBtn" disabled>Comprobar</button>`;
-  area.querySelectorAll('.opt').forEach(b=>b.addEventListener('click',()=>pick(b)));
-  document.getElementById('checkBtn').addEventListener('click',check);
-}
-function pick(btn){
-  if(locked)return;
-  area.querySelectorAll('.opt').forEach(o=>o.classList.remove('sel'));
-  btn.classList.add('sel');selected=parseInt(btn.dataset.i);
-  document.getElementById('checkBtn').disabled=false;
-}
-function check(){
-  if(selected===null||locked)return;locked=true;
-  const Q=QUESTIONS[idx];const opts=area.querySelectorAll('.opt');
-  opts.forEach(o=>o.classList.add('locked'));
-  const right=selected===Q.a;
-  opts[Q.a].classList.add('good');
-  if(!right)opts[selected].classList.add('bad');
-  document.getElementById('checkBtn').style.display='none';
-  if(right){correct++;xp+=10;}
-  showDrawer(right,Q.j);
-}
-function showDrawer(ok,just){
-  drawer.className='drawer show '+(ok?'ok':'no');
-  document.getElementById('dTitle').textContent=ok?'Correcto':'Respuesta incorrecta';
-  document.getElementById('dJust').innerHTML='<b>Justificación del catedrático:</b> '+just;
-}
-document.getElementById('dCont').addEventListener('click',()=>{
-  drawer.className='drawer';idx++;setTimeout(renderQ,180);
-});
-function renderResult(){
-  drawer.className='drawer';
-  const total=QUESTIONS.length;const acc=Math.round((correct/total)*100);
-  let title='Lección completada',msg='Dominas la microeconomía del bienestar.';
-  if(acc<50){title='Buen comienzo';msg='Repasa las unidades y vuelve a intentarlo.';}
-  else if(acc<80){title='Vas muy bien';msg='Un repaso más y lo clavas.';}
-  area.innerHTML=`
-    <div class="result">
-      <h2>${title}</h2>
-      <p>${msg}</p>
-      <div class="scoreboard">
-        <div class="sb"><div class="v">${xp}</div><div class="l">XP</div></div>
-        <div class="sb"><div class="v">${acc}%</div><div class="l">Aciertos</div></div>
-        <div class="sb"><div class="v">${correct}/${total}</div><div class="l">Correctas</div></div>
-      </div>
-      <button class="btn" id="again">Reintentar</button>
-      <button class="btn ghost" id="back">Volver a la guía</button>
-    </div>`;
-  document.getElementById('again').addEventListener('click',()=>reset(true));
-  document.getElementById('back').addEventListener('click',()=>{reset(false);switchView('guide');});
-}
-function reset(render){idx=0;xp=0;correct=0;selected=null;locked=false;if(render)renderQ();}
-renderQ();
-</script>
+<script src="script.js"></script>
 </body>
 </html>
